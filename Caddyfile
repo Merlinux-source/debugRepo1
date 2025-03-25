@@ -1,0 +1,12 @@
+{
+		acme_ca https://acme-v02.api.letsencrypt.org/directory
+		email root@example.com
+		default_bind 0.0.0.0
+}
+
+host.example.com {
+		reverse_proxy debug:8080 {
+				trusted_proxies 172.17.0.0/16
+				header_up X-Real-IP {remote}
+		}
+}
